@@ -1,6 +1,8 @@
 package util;
 
 import javax.swing.*;
+import java.awt.*;
+import java.io.File;
 
 
 /**
@@ -57,16 +59,54 @@ public class GuiUtil {
 
     /**
      * @param panel
-     * @param stretch
+     * @param stretchrate
      */
 
-    public static void showPanel(JPanel panel, double stretch) {
+    public static void showPanel(JPanel panel, double stretchrate) {
         GuiUtil.setLookAndFeel();
-        JFrame frame = new JFrame();
+        JFrame jf = new JFrame();
         //if the comment is null, set the panel to center
-        frame.setLocationRelativeTo(null);
-        frame.setSize(500,500);
-//        CenterPanel centerpanel = new CenterPanel(stretch);
+        jf.setLocationRelativeTo(null);
+        jf.setSize(500,500);
+        CenterPanel centerpanel = new CenterPanel(stretchrate);
+        jf.setContentPane(centerpanel);
+        jf.setDefaultCloseOperation(3);
+        jf.setVisible(true);
+        centerpanel.show(panel);
     }
 
+    public static void showPanel(JPanel panel) {
+        showPanel(panel, 0.85);
+    }
+
+    /**
+     * Set a button with image and text
+     *
+     * @param button
+     * @param imgName
+     * @param buttonText
+     */
+
+    public static void setImageIcon(JButton button,String imgName,String buttonText) {
+        ImageIcon i = new ImageIcon((new File(imgFolder, imgName)).getAbsolutePath());
+        button.setIcon(i);
+        button.setPreferredSize(new Dimension(61,81));
+        button.setToolTipText(buttonText);
+        button.setVerticalTextPosition(JButton.BOTTOM);//3
+        button.setHorizontalTextPosition(JButton.CENTER);//0
+        button.setText(buttonText);
+    }
+
+    /**
+     * Set colors of Component
+     *
+     * @param color
+     * @param component
+     */
+    //JComponent... a list of JComponent
+    public static void setColor(Color color, JComponent... component) {
+        for (JComponent cs : component) {
+            cs.setForeground(color);
+        }
+    }
 }
