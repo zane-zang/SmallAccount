@@ -21,7 +21,7 @@ public class MainPanel extends JPanel {
         GuiUtil.setLookAndFeel();
     }
 
-    public static MainPanel mainpanel = new MainPanel();
+    public static MainPanel instance = new MainPanel();
     private JToolBar toolbar = new JToolBar();
     public JButton jbSpend = new JButton();
     public JButton jbRecord = new JButton();
@@ -75,7 +75,7 @@ public class MainPanel extends JPanel {
     }
 
     public static void main(String[] args) {
-        GuiUtil.showPanel(MainPanel.mainpanel,0.85);
+        GuiUtil.showPanel(MainPanel.instance,0.85);
     }
 
 }
